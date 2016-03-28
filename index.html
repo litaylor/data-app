@@ -1,0 +1,203 @@
+<html>
+
+<head>
+  <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+
+  <style type ="text/css">
+    @font-face {
+      font-family: priva;
+      font-weight: bold;
+      src: url(privafourpro.otf);
+    }
+    @font-face {
+      font-family: priva;
+      font-weight: normal;
+      src: url(privaonepro.otf);
+    }
+
+    body {
+      font-size: 18px;
+    }
+
+    .highcharts-title{
+      font-family: priva;
+      font-weight: bold;
+      font-size: 1.45em;
+      line-height: 3em;
+    }
+    .highcharts-subtitle{
+      font-family: priva;
+      font-weight: normal;
+      font-size: 1.2em;
+    }
+    .highcharts-xaxis-labels{
+      font-family: priva;
+      font-weight: normal;
+    }
+    .highcharts-yaxis-labels{
+      font-family: priva;
+      font-weight: normal;
+    }
+    .highcharts-legend{
+      font-family: priva;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function drawChart(series1,series2,series3,series4,cap1,cap2,cap3,cap4,title,subtitle,location){
+      $(location).highcharts({
+          title: {
+              text: title,
+              style: {
+                color: '#000000',
+                fontFamily: '',
+                fontWeight: '',
+                fontSize: '',
+                lineHeight:''
+              },
+              align: 'left',
+              // x: 20 //center
+          },
+          subtitle: {
+              text: subtitle,
+              style: {
+                color: '#000000',
+                fontFamily: '',
+                fontWeight: '',
+                fontSize: ''
+              },
+              align: 'left',
+              // x: 20
+          },
+          xAxis: {
+              categories: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012'],
+              labels: {
+                style: {
+                  color: '',
+                  fontFamily: '',
+                  fontWeight: ''
+                }
+              }
+          },
+          yAxis: {
+              title: {
+                  text: null
+              },
+              min: 15,
+              max: 50,
+              labels: {
+                style: {
+                  color: '',
+                  fontFamily: '',
+                  fontWeight: ''
+                }
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          tooltip: {
+              valueSuffix: '°C'
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'center',
+              verticalAlign: 'bottom',
+              borderWidth: 0,
+              itemStyle: {
+                fontFamily:'',
+                fontWeight:''
+              }
+          },
+          colors: [
+            '#000000',
+            '#DB5800',
+            '#FF9000',
+            '#F0C600'
+          ],
+          series: [{
+              name: cap1,
+              data: series1
+          }, {
+              name: cap2,
+              data: series2
+          }, {
+              name: cap3,
+              data: series3
+          }, {
+              name: cap4,
+              data: series4
+          }]
+      });
+    }
+    function fillEnrollment(){
+      $.ajax({ // MEN
+        url: "data-enrollment-men.json",
+        dataType: "text",
+        success: function(data) {
+          var json = $.parseJSON(data);
+          var totalMales = json.totalMales;
+          var whiteMales = json.whiteMales;
+          var blackMales = json.blackMales;
+          var hispanicMales = json.hispanicMales;
+          console.log(totalMales,whiteMales,blackMales,hispanicMales);
+          drawChart(totalMales,whiteMales,blackMales,hispanicMales,"All men","White, non-Hispanic men","Black, non-Hispanic men","Hispanic men","College Enrollment Rates, Men","Percentage of 18- to 24-year-old men enrolled in 2- and 4-year colleges","#box1");
+        }
+      });
+      $.ajax({ // WOMEN
+        url: "data-enrollment-women.json",
+        dataType: "text",
+        success: function(data) {
+          var json = $.parseJSON(data);
+          var totalFemales = json.totalFemales;
+          var whiteFemales = json.whiteFemales;
+          var blackFemales = json.blackFemales;
+          var hispanicFemales = json.hispanicFemales;
+          console.log(totalFemales,whiteFemales,blackFemales,hispanicFemales);
+          drawChart(totalFemales,whiteFemales,blackFemales,hispanicFemales,"All women","White, non-Hispanic women","Black, non-Hispanic women","Hispanic women","College Enrollment Rates, Women","Percentage of 18- to 24-year-old women enrolled in 2- and 4-year colleges",'#box2');
+        }
+      });
+    }
+  </script>
+
+</head>
+<body>
+
+
+<div id="box1" style="width:50%; height: 480px; float: left"></div>
+<div id="box2" style="width:50%; height: 480px; float: left;"></div>
+
+<button id="button1">College Enrollment Rates</button>
+<button id="button2">Median Income Level of Graduates</button>
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script>
+
+  $(document).ready(function() {
+    fillEnrollment();
+
+    $("#button1").click(function(){
+      fillEnrollment();
+    })
+
+
+
+
+
+
+
+  })
+
+
+</script>
+
+
+</body>
+
+</html>
