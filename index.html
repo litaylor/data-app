@@ -33,13 +33,14 @@
 
     body {
       font-size: 18px;
+      padding-bottom:40px;
     }
 
     .highcharts-title{
       font-family: priva;
       font-weight: bold;
       font-size: 1.45em;
-      line-height: 3em;
+      line-height: 2.07;
     }
     .highcharts-subtitle{
       font-family: priva;
@@ -71,7 +72,7 @@
     .bodytext{
       font-family:miller;
       font-size: 1em;
-      line-height: 1.9em;
+      line-height: 1.9;
     }
     .bodytext p{
       padding-bottom: 1.9em;
@@ -98,12 +99,30 @@
       left:0px;
       text-align:center;
     }
+    .top img{
+      width:200px;
+    }
     .container{
       margin-top:40px;
     }
-    @media (min-width:962px){
+    @media (min-width:992px){
       .leftside {
         border-right: thin #cccccc solid;
+      }
+
+    }
+    @media (max-width:991px){
+      body{
+        font-size:24px;
+      }
+      .top img{
+        width:300px;
+      }
+      .container{
+        margin-top:60px;
+        margin-left:0px;
+        margin-right:0px;
+        width:100%;
       }
 
     }
@@ -240,7 +259,7 @@
 </head>
 <body>
   <div class="top">
-    <img src="wapo.png" style="width:200px; height:auto; padding:5px;"/>
+    <img src="wapo.png" style="height:auto; padding:5px;"/>
   </div>
   <div class="container">
     <div class="row">
