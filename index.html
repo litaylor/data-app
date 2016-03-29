@@ -20,6 +20,16 @@
       font-weight: normal;
       src: url(privaonepro.otf);
     }
+    @font-face {
+      font-family: bodoni;
+      font-weight: normal;
+      src: url(bodoni.ttf);
+    }
+    @font-face {
+      font-family: miller;
+      font-weight: normal;
+      src: url(MillerTextRoman.ttf);
+    }
 
     body {
       font-size: 18px;
@@ -51,6 +61,54 @@
     #highcharts-2 .highcharts-legend{
       display:none;
     }
+    h1 {
+      font-family:bodoni;
+      font-weight:bold;
+      font-size:2.8em;
+      line-height:1;
+      padding-bottom:.85em;
+    }
+    .bodytext{
+      font-family:miller;
+      font-size: 1em;
+      line-height: 1.9em;
+    }
+    .bodytext p{
+      padding-bottom: 1.9em;
+    }
+    .graphic{
+      padding-bottom: 2.8em;
+    }
+    .h1cell{
+      border-bottom: thin #cccccc solid;
+    }
+    .byline{
+      font-family: priva;
+      font-weight: bold;
+      padding: 20px 0px;
+    }
+    .byline span{
+      color: rgb(46,109,157)
+    }
+    .top{
+      background-color:#000000;
+      width:100%;
+      position:absolute;
+      top:0px;
+      left:0px;
+      text-align:center;
+    }
+    .container{
+      margin-top:40px;
+    }
+    @media (min-width:962px){
+      .leftside {
+        border-right: thin #cccccc solid;
+      }
+
+    }
+
+
   </style>
 
   <script>
@@ -181,19 +239,53 @@
 
 </head>
 <body>
-
+  <div class="top">
+    <img src="wapo.png" style="width:200px; height:auto; padding:5px;"/>
+  </div>
   <div class="container">
     <div class="row">
+      <div class="col-xs-12 h1cell">
+        <h1>America's college enrollment gap is shrinking.</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-8 leftside" style="padding-right:40px;">
+    <div class="row">
+      <div class="col-xs-12 bodytext">
+        <div class="byline">By <span>Langston Taylor</span></div>
+        <p>
+          Long the key to social mobility, attending college remains an opportunity more available to white Americans than to their Black and Hispanic peers.
+        </p>
+        <p>
+          However, the new millenium has seen a shrinking of that gap. While college enrollment as a whole has been growing, white Americans' enrollment is increasing more slowly. Hispanic enrollment at 2- and 4-year colleges and universities nearly doubled between 2000 and 2012.
+        </p>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-xs-12 col-md-6">
-        <div id="box1" style="width:100%; height: 480px;"></div>
+        <div id="box1" style="width:100%; height: 480px;" class="graphic"></div>
       </div>
       <div class="col-xs-12 col-md-6">
-        <div id="box2" style="width:100%; height: 480px;"></div>
+        <div id="box2" style="width:100%; height: 480px;" class="graphic"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 bodytext">
+        <p>
+          Yet the economic benefits of attending college lag behind. White people see lower unemployment rates at every level of education. The left-leaning Center for Economicand Policy Research found that when adjusted for education, the black unemployment rate <a href="http://cepr.net/blogs/cepr-blog/the-black-white-unemployment-gap-isn-t-really-about-education">usually  doubles</a> that for white people and the gap grows and shrinks with the overall health of the economy.
+        </p>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <div id="box3" style="width:100%; height: 480px;"></div>
+        <div id="box3" style="width:100%; height: 480px;" class="graphic"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 bodytext">
+        <p>
+          States with higher white populations remain wealthier. Use the database to search for any state.
+        </p>
       </div>
     </div>
     <div class="row">
@@ -204,6 +296,10 @@
         <table id="stateTable" class="display" width="100%"></table>
       </div>
     </div>
+      </div>
+      <div class="col-xs-0 col-md-4">
+      </div>
+
   </div>
 
 <!--
@@ -245,7 +341,10 @@
             crosshair: true
         },
         yAxis: {
-            min: 0
+            min: 0,
+            title: {
+              text: null
+            }
         },
         // tooltip: {
         //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
